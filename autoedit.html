@@ -1,4 +1,8 @@
 <!-- Simply Displays The Value -->
 <template name="autoedit">
-    <p class="modalEdit">{{this.value}}</p>
+    {{#if this.defualtValue}}
+        <p class="modalEdit">{{this.displayValue}}</p>
+    {{else}}
+        <p class="modalEdit">{{this.value}}</p>
+    {{/if}}
 </template>
