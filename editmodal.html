@@ -1,0 +1,9 @@
+<!-- Modal Edit Layout -->
+<template name="editmodal">
+    <!-- Uses Auto Form -->
+    {{#autoForm collection=this.collectionName id=this.updateId type="update"}}
+    <fieldset>
+        {{> afQuickField name=this.key class='editValue' value=this.value}}
+    </fieldset>
+    {{/autoForm}}
+</template>
