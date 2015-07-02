@@ -22,5 +22,6 @@ Package.onUse(function(api) {
     api.addFiles('autoedit.js', "client");
     api.addFiles("editmodal.html", "client");
     api.addFiles('editmodal.js', "client");
+    api.addFiles('auto-edit-modal-style.css', "client");
 });
 

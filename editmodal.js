@@ -57,11 +57,12 @@ var saveEdit = function (context) {
 //    if (inputType === "checkbox") {
 //        newValue =  $(".editValue").is(':checked');
 //    }
-    switch (typeof Mongo.Collection.get(context.mongoName).simpleSchema()._schema[context.key].type()) {
+    var schemaVal = Mongo.Collection.get(context.mongoName).simpleSchema()._schema[context.key];
+    switch (typeof schemaVal.type()) {
         case "number" :
             //Check If Number Is Of Date Type
-            if (Mongo.Collection.get("people").simpleSchema()._schema[context.key].autoform) {
-                if (Mongo.Collection.get("people").simpleSchema()._schema[context.key].autoform.type === "bootstrap-datepicker") {
+            if (schemaVal.autoform) {
+                if (schemaVal.autoform.type === "bootstrap-datepicker") {
                     newValue = new Date(newValue).getTime();
                 } else {
                     newValue = Number(newValue);
@@ -71,10 +72,11 @@ var saveEdit = function (context) {
             }
             break;
         case "boolean" :
+            // Only Works For CheckBox
             newValue = $(".editValue").is(':checked');
             break;
         case "string" :
-            // Do Nothing
+            // Do Nothing With Value
             break;
     }
     var obj = {};
