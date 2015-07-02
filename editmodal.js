@@ -52,9 +52,30 @@ var saveEdit = function (context) {
     var newValue = $(".editValue").val();
     // Filter For Types Other Then Type Text
     // TODO Other Types As Well
-    var inputType = $(".editValue")[0].type;
-    if (inputType === "checkbox") {
-        newValue =  $(".editValue").is(':checked');
+//    var inputType = $(".editValue")[0].type;
+//    console.log($(".editValue")[0]);
+//    if (inputType === "checkbox") {
+//        newValue =  $(".editValue").is(':checked');
+//    }
+    switch (typeof Mongo.Collection.get(context.mongoName).simpleSchema()._schema[context.key].type()) {
+        case "number" :
+            //Check If Number Is Of Date Type
+            if (Mongo.Collection.get("people").simpleSchema()._schema[context.key].autoform) {
+                if (Mongo.Collection.get("people").simpleSchema()._schema[context.key].autoform.type === "bootstrap-datepicker") {
+                    newValue = new Date(newValue).getTime();
+                } else {
+                    newValue = Number(newValue);
+                }
+            } else {
+                newValue = Number(newValue);
+            }
+            break;
+        case "boolean" :
+            newValue = $(".editValue").is(':checked');
+            break;
+        case "string" :
+            // Do Nothing
+            break;
     }
     var obj = {};
     obj[context.key] = newValue;

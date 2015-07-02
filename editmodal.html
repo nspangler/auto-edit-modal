@@ -3,7 +3,11 @@
     <!-- Uses Auto Form -->
     {{#autoForm collection=this.collectionName id=this.updateId type="update"}}
     <fieldset>
-        {{> afQuickField name=this.key class='editValue' value=this.value}}
+        {{#if this.editValue}}
+            {{> afQuickField name=this.key class='editValue' value=this.editValue}}
+        {{else}}
+            {{> afQuickField name=this.key class='editValue' value=this.value}}
+        {{/if}}
     </fieldset>
     {{/autoForm}}
 </template>
