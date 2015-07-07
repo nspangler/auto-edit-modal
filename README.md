@@ -11,7 +11,7 @@ $ meteor add nspangler:auto-edit-modal
 
 ## Usage
 
-You must first define schema for your collection using `aldeed:collection2`, which is included in this package
+You must first define schema for your collection using `aldeed:collection2`, which is NOT included in this package
 
 ```js
 People = new Mongo.Collection("people");
